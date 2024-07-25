@@ -9,6 +9,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import * as z from 'zod'
 
+import { Property } from '@prisma/client'
+
 import {
   Form,
   FormControl,
@@ -20,8 +22,10 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 
+import api from '@/lib/api'
+
 interface ClientFormProps {
-  initialData: any | null
+  initialData: Property | null
 }
 
 export const formShema = z.object({
@@ -50,7 +54,21 @@ export const ClientForm = ({ initialData }: ClientFormProps) => {
   })
 
   const onSubmit = async (data: ClientFormValues) => {
-    console.log(data)
+    try {
+      setLoading(true)
+
+      if (initialData) {
+        await api.patch(`/api/properties/${params.imoveisId}`)
+      } else {
+        await api.post('/api/properties', data)
+      }
+
+      router.refresh()
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
