@@ -20,7 +20,22 @@ export async function POST(req: Request) {
 
     return NextResponse.json(property)
   } catch (error) {
-    console.log('[PROPERTY]', error)
+    console.log('[PROPERTY_POST]', error)
+    return new NextResponse('Internal Server Error', { status: 500 })
+  }
+}
+
+export async function GET(req: Request) {
+  try {
+    const properties = await db.property.findMany({
+      orderBy: {
+        id: 'desc'
+      }
+    })
+
+    return NextResponse.json(properties)
+  } catch (error) {
+    console.log('[PROPERTY_GET]', error)
     return new NextResponse('Internal Server Error', { status: 500 })
   }
 }

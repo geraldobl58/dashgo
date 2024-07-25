@@ -21,6 +21,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { Header } from '@/components/header'
 
 import api from '@/lib/api'
 
@@ -58,12 +59,12 @@ export const ClientForm = ({ initialData }: ClientFormProps) => {
       setLoading(true)
 
       if (initialData) {
-        await api.patch(`/api/properties/${params.imoveisId}`)
+        await api.patch(`/api/properties/${params.propertyId}`, data)
       } else {
         await api.post('/api/properties', data)
       }
-
       router.refresh()
+      router.push('/properties')
     } catch (error) {
       console.log(error)
     } finally {
@@ -73,36 +74,39 @@ export const ClientForm = ({ initialData }: ClientFormProps) => {
 
   return (
     <div>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full mt-5"
-        >
-          <div className="grid grid-cols-2 gap-4">
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Título</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="text"
-                      disabled={loading}
-                      {...field}
-                      className="w-full"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <Button type="submit" disabled={loading} className="ml-auto">
-            {action}
-          </Button>
-        </form>
-      </Form>
+      <Header title={title} />
+      <div className="p-4">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-8 w-full mt-5"
+          >
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Título</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        disabled={loading}
+                        {...field}
+                        className="w-full"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <Button type="submit" disabled={loading} className="ml-auto">
+              {action}
+            </Button>
+          </form>
+        </Form>
+      </div>
     </div>
   )
 }

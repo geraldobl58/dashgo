@@ -4,22 +4,30 @@ import { useRouter } from 'next/navigation'
 
 import { PlusCircleIcon } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
+import { Property } from '@prisma/client'
 
-import { Container } from '@/components/container'
+import { DataTable } from '@/components/data-table'
 import { Header } from '@/components/header'
 
-const Imoveis = () => {
+import { Button } from '@/components/ui/button'
+
+import { columns } from './columns'
+
+interface PropertyClientProps {
+  data: Property[]
+}
+
+export const PropertyClient = ({ data }: PropertyClientProps) => {
   const router = useRouter()
 
   return (
-    <>
+    <div>
       <Header
         title="Imóveis"
         contentButtons={
           <>
             <Button
-              onClick={() => router.push(`/imoveis/novo`)}
+              onClick={() => router.push(`/properties/new`)}
               className="flex gap-2"
               size="sm"
             >
@@ -29,9 +37,10 @@ const Imoveis = () => {
           </>
         }
       />
-      <Container>Imoveis</Container>
-    </>
+
+      <div className="p-4">
+        <DataTable searchKey="title" columns={columns} data={data} />
+      </div>
+    </div>
   )
 }
-
-export default Imoveis
