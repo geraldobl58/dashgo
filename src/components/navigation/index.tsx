@@ -1,12 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-
-import { useMedia } from 'react-use'
-
 import Link from 'next/link'
 
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 import {
   Building2Icon,
@@ -39,20 +35,20 @@ export const Navigation = ({
     {
       icon: <Building2Icon />,
       label: 'Imóveis',
-      href: `/imoveis`,
-      active: pathname === `/imoveis` || pathname === `/imoveis/novo`
+      href: `/properties`,
+      active: pathname === `/properties` || pathname === `/properties/novo`
     },
     {
       icon: <HandCoinsIcon />,
       label: 'Comissões',
-      href: `/comissoes`,
-      active: pathname === `/comissoes` || pathname === `/comissoes/novo`
+      href: `/commissions`,
+      active: pathname === `/commissions` || pathname === `/commissions/novo`
     },
     {
       icon: <DollarSignIcon />,
       label: 'Pagamentos',
-      href: `/pagamentos`,
-      active: pathname === `/pagamentos` || pathname === `/pagamentos/novo`
+      href: `/payments`,
+      active: pathname === `/payments` || pathname === `/payments/novo`
     }
   ]
 
