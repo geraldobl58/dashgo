@@ -17,9 +17,7 @@ const PropertyIdPage = async ({ params }: PropertyIdPageProps) => {
 
   return (
     <>
-      <div>
-        <ClientForm initialData={data} />
-      </div>
+      <ClientForm initialData={data} />
     </>
   )
 }

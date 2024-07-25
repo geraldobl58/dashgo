@@ -15,14 +15,36 @@ export async function PATCH(
   try {
     const body = await req.json()
 
-    const { title } = body
+    const {
+      title,
+      category,
+      description,
+      address,
+      neighborhood,
+      price,
+      size,
+      bathroom,
+      bedroom,
+      garage
+    } = body
 
-    if (!title) {
-      return new NextResponse('Título Obrigátorio', { status: 400 })
+    if (
+      !title ||
+      !category ||
+      !description ||
+      !address ||
+      !neighborhood ||
+      !price ||
+      !size ||
+      !bathroom ||
+      !bedroom ||
+      !bedroom
+    ) {
+      return new NextResponse('Campo Obrigátorio', { status: 400 })
     }
 
     if (!params.propertyId) {
-      return new NextResponse('ID Título Obrigátorio', { status: 400 })
+      return new NextResponse('ID Imovél Obrigátorio', { status: 400 })
     }
 
     const property = await db.property.updateMany({
@@ -30,7 +52,16 @@ export async function PATCH(
         id: params.propertyId
       },
       data: {
-        title
+        title,
+        category,
+        description,
+        address,
+        neighborhood,
+        price,
+        size,
+        bathroom,
+        bedroom,
+        garage
       }
     })
 

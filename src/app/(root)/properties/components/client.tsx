@@ -4,24 +4,22 @@ import { useRouter } from 'next/navigation'
 
 import { PlusCircleIcon } from 'lucide-react'
 
-import { Property } from '@prisma/client'
-
 import { DataTable } from '@/components/data-table'
 import { Header } from '@/components/header'
 
 import { Button } from '@/components/ui/button'
 
-import { columns } from './columns'
+import { columns, PropertiesColumn } from './columns'
 
 interface PropertyClientProps {
-  data: Property[]
+  data: PropertiesColumn[]
 }
 
 export const PropertyClient = ({ data }: PropertyClientProps) => {
   const router = useRouter()
 
   return (
-    <div>
+    <>
       <Header
         title="Imóveis"
         contentButtons={
@@ -41,6 +39,6 @@ export const PropertyClient = ({ data }: PropertyClientProps) => {
       <div className="p-4">
         <DataTable searchKey="title" columns={columns} data={data} />
       </div>
-    </div>
+    </>
   )
 }

@@ -31,7 +31,6 @@ export const CellAction = ({ data }: CellActionProps) => {
   const router = useRouter()
 
   const onDelete = async () => {
-    console.log('delete')
     try {
       setLoading(true)
       await api.delete(`/api/properties/${data.id}`)
@@ -43,6 +42,7 @@ export const CellAction = ({ data }: CellActionProps) => {
       setOpen(false)
     }
   }
+
   return (
     <>
       <AlertModal

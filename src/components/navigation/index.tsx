@@ -36,7 +36,7 @@ export const Navigation = ({
       icon: <Building2Icon />,
       label: 'Imóveis',
       href: `/properties`,
-      active: pathname === `/properties` || pathname === `/properties/novo`
+      active: pathname === `/properties` || pathname === `/properties/new`
     },
     {
       icon: <HandCoinsIcon />,
