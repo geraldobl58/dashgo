@@ -37,7 +37,7 @@ import api from '@/lib/api'
 import { Textarea } from '@/components/ui/textarea'
 
 interface ClientFormProps {
-  initialData: Property | null
+  initialData: any
 }
 
 type ClientFormValues = z.infer<typeof formShema>

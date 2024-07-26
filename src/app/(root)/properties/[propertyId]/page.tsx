@@ -9,15 +9,9 @@ interface PropertyIdPageProps {
 }
 
 const PropertyIdPage = async ({ params }: PropertyIdPageProps) => {
-  const data = await db.property.findUnique({
-    where: {
-      id: params.propertyId
-    }
-  })
-
   return (
     <>
-      <ClientForm initialData={data} />
+      <ClientForm initialData={[]} />
     </>
   )
 }
